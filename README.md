@@ -25,10 +25,10 @@ The first scan will be a non-credentialed scan before any updates have been appl
    * [Results](#Results)
 
 ### Learning objectives:
-1. Provisioning and deprovisioning virtual environments within VMware.
-2. Run initial vulnerability scan using Nessus against vm and observe results.
-3. Run a credentialed vulnerability scan and compare/contrast results.
-4. Remediation
+1. Provisioning and deprovisioning virtual environments within VMware for Windows 10.
+2. Run initial vulnerability scan without credentials against vm and observe results.
+3. Run a credentialed vulnerability scan with the addition of deprecated software added in.
+4. Perform andalysis and remediation of issues and run  final scan to verify remediation was successful.
 
 ### Technologies and Protocols:
 * VMware Workstation 17 Player
