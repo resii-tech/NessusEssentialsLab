@@ -13,7 +13,7 @@ The first scan will be a non-credentialed scan before any updates have been appl
    * [Learning Objectives](#Learning-objectives)
    * [Technologies and Protocols](#Technologies-and-Protocols)
    * [Resource Links](#Resource-Links)
-   * [Prerequisite](#Prerequisite)
+   * [Overview](#Overview)
    * [Part 1: Download Nessus on the PC 1 VM](#Part-1-Download-Nessus-on-the-PC-1-VM)
    * [Part 2: Install Nessus on the PC 1 VM](#Part-2-Install-Nessus-on-the-PC-1-VM)
    * [Part 3: Find the IP Address of the Domain Controller](#Part-3-Find-the-IP-Address-of-the-Domain-Controller)
@@ -45,15 +45,8 @@ I will provide the links to resources that will be required to follow along if y
 - [Nessus Essentials](https://www.tenable.com/products/nessus/nessus-essentials)
 - [Deprecated Firefox Version for VM Install](https://ftp.mozilla.org/pub/firefox/releases/3.6.12/win32/en-US/)
 
-## Prerequisite
-
-* Follow the steps in my [Active Directory Home Lab](https://github.com/emann615/ActiveDirectoryLab) to:
-   * Download and Install Oracle VirtualBox.
-   * Create a domain controller (DC) virtual machine running Windows Server 2022
-      * Make sure you do not install any system updates.
-   * Set up Active Directory on the  domain controller.
-   * Create a second virtual machine (PC 1) running Windows 10.
-   * Connect the PC 1 virtual machine to the domain.
+### Overview:
+<img width="961" alt="nessus breakdown" src="https://github.com/resii-tech/NessusEssentialsLab/assets/129999089/c51374ec-e467-4d10-ad68-5e054bed7bf6">
 
 ## Walk-Through
 
