@@ -20,9 +20,9 @@ Follow the link to read more on the strategy and various tools involved in execu
    * [Technologies and Protocols](#Technologies-and-Protocols)
    * [Resource Links](#Resource-Links)
    * [Overview](#Overview)
-   * [Continue Set Up: Download Windows 10 ISO file](#Part-1-Download-Windows-10-ISO-file)
-   * [Part 2: Install Nessus on the PC 1 VM](#Part-2-Install-Nessus-on-the-PC-1-VM)
-   * [Part 3: Find the IP Address of the Domain Controller](#Part-3-Find-the-IP-Address-of-the-Domain-Controller)
+   * [Continue Set Up: Download Windows 10 ISO file](#Download-Windows-10-ISO-file)
+   * [Part 1: Download and Install Nessus Essentials](#Part-1-Download-and-Install-Nessus-Essentials)
+   * [Part 2: Initialize Nessus Installation](#Part-2-Initialize-Nessus-Installation)
    * [Part 4: Create a New Scan in Nessus](#Part-4-Create-a-New-Scan-in-Nessus)
    * [Part 5: Run Scan 1 (Non-credentialed) and View the Results](#Part-5-Run-Scan-1-Non-credentialed-and-View-the-Results)
    * [Part 6: Run Scan 2 (Credentialed) and View the Results](#Part-6-Run-Scan-2-Credentialed-and-View-the-Results)
@@ -64,155 +64,30 @@ I will provide the links to resources that will be required to follow along if y
 - Accept software license terms and agree to Windows 10 setup
 - Creat installation media and choose the ISO file option
 
-### Part 1: Download Nessus on the PC 1 VM
+![win10 download](https://github.com/resii-tech/NessusEssentialsLab/assets/129999089/b6fd88b5-ff83-425e-89bb-db1c4fa818f6)
 
-1. Start up the **DC** virtual machine and the PC 1 virtual machine.
-2. Log in to the **PC 1** virtual machine using the admin account you created in Active Directory.
-3. Open **Microsoft Edge**.
+## Part 1: Download and Install [Nessus Essentials](https://www.tenable.com/products/nessus/nessus-essentials)
+- Register for an account
+- You will receive an activation code in your email
+- Copy your activation code in your email and click the Download Nessus as well
+- Choose Nessus > View Downloads 
+- Under version chose Nessus - 8.15.6
+- Under platform choose Windows - x86_64 **make sure it includes Server 2012 R2, 7,8,10**
+- Open Tenable Nessus and click next and install
+- After finishing installation and window should pop up with a local host URL 
+- Copy/paste the URL for future use 
 
-<img src="https://github.com/emann615/MicrosoftSentinelLab/assets/117882385/71f1b919-4fa3-460b-a507-66b049a32143" height="80%" width="80%"/>
-</br>
-</br>
+## Part 2: Initialize Nessus Installation 
+- Click Connect via SSL on web page 
+- Click **Advance** on warning page > **Continue to localhost** > Nessus Essentials 
+- Click skip on Get an activation code (we already have ours)
+- Paste activation code > continue 
+- Create a username and password **remember for future use**
+- Click submit > and wait for download
 
-4. Go to the following link: https://www.tenable.com/downloads/nessus 
+![image](https://github.com/resii-tech/NessusEssentialsLab/assets/129999089/5e5a4544-9b9b-4ee5-b89f-f6e50d2d8934)
 
-<img src="https://github.com/emann615/MicrosoftSentinelLab/assets/117882385/b009fcfd-871c-4659-adc0-cede46fe6750" height="80%" width="80%"/>
-</br>
-</br>
-
-5. Under **Version**, make sure the latest version of Nessus is selected.
-
-<img src="https://github.com/emann615/MicrosoftSentinelLab/assets/117882385/e16af465-0a76-43f6-97e7-ed5767cad7df" height="80%" width="80%"/>
-</br>
-</br>
-
-6. Under **Platform**, make sure **Windows - x86_64** is selected.
-
-<img src="https://github.com/emann615/MicrosoftSentinelLab/assets/117882385/c589b325-bd71-46b0-8d94-fce50e2912dc" height="80%" width="80%"/>
-</br>
-</br>
-
-7. Click **Download**, and click **I Agree on the License Agreement**.
-
-<img src="https://github.com/emann615/MicrosoftSentinelLab/assets/117882385/3f0a9c49-0365-4416-b9c1-f2257a8090e3" height="80%" width="80%"/>
-</br>
-</br>
-
-<img src="https://github.com/emann615/MicrosoftSentinelLab/assets/117882385/3d599c82-998a-45b5-92e4-bbaac74f9f9d" height="80%" width="80%"/>
-</br>
-</br>
-
-### Part 2: Install Nessus on the PC 1 VM
-
-1. Once Nessus has finished downloading, double click the file to start the installation process
-
-<img src="https://github.com/emann615/MicrosoftSentinelLab/assets/117882385/2174705c-2ce3-4ad3-b1b8-613fe4824fd0" height="80%" width="80%"/>
-</br>
-</br>
-
-2. Once the installation wizard pops up, click **Next**.
-
-<img src="https://github.com/emann615/MicrosoftSentinelLab/assets/117882385/5af3e61a-d40d-4e13-af3b-f16dc4a36d6c" height="80%" width="80%"/>
-</br>
-</br>
-
-3. Select **I accept the terms in the license agreement**, and click **Next**.
-
-<img src="https://github.com/emann615/MicrosoftSentinelLab/assets/117882385/a21c40e6-f568-4181-85f4-2d81153b7c3a" height="80%" width="80%"/>
-</br>
-</br>
-
-4. Click **Next** again, and click **Install** on the last page.
-
-<img src="https://github.com/emann615/MicrosoftSentinelLab/assets/117882385/0c952c1a-392a-427e-8827-1563d10a9322" height="80%" width="80%"/>
-</br>
-</br>
-
-<img src="https://github.com/emann615/MicrosoftSentinelLab/assets/117882385/8bc50846-763a-4456-bf58-75cd94703d64" height="80%" width="80%"/>
-</br>
-</br>
-
-5. Click **Yes** when asked “Do you want to allow this app to make changes to your device?”.
-
-<img src="https://github.com/emann615/MicrosoftSentinelLab/assets/117882385/c5136c55-3be1-4353-8f8b-a3af4da246e0" height="80%" width="80%"/>
-</br>
-</br>
-
-6. Once Nessus has finished installing, click **Finish**.
-
-<img src="https://github.com/emann615/MicrosoftSentinelLab/assets/117882385/4d5154a3-b6ec-4173-90c9-77d6bf57cb7d" height="80%" width="80%"/>
-</br>
-</br>
-
-7. A new page will open up in **Microsoft Edge**. Click **Connect via SSL**.
-
-<img src="https://github.com/emann615/MicrosoftSentinelLab/assets/117882385/d13772ba-c239-4966-bb3f-949c0cb1484b" height="80%" width="80%"/>
-</br>
-</br>
-
-8. Click **Advanced**, and click **Continue to local host (unsafe)**.
-
-<img src="https://github.com/emann615/MicrosoftSentinelLab/assets/117882385/03988b42-2090-4de6-9b65-50afd5b113b5" height="80%" width="80%"/>
-</br>
-</br>
-
-<img src="https://github.com/emann615/MicrosoftSentinelLab/assets/117882385/308402cf-afe1-48e2-ad9a-1a65bc2d7aca" height="80%" width="80%"/>
-</br>
-</br>
-
-9. Once Nessus has finished initializing, click **Continue**.
-
-<img src="https://github.com/emann615/MicrosoftSentinelLab/assets/117882385/50fd220a-6af1-4574-9480-5492ed31f279" height="80%" width="80%"/>
-</br>
-</br>
-
-10. Select **Register for Nessus Essentials**, and click **Continue**.
-
-<img src="https://github.com/emann615/MicrosoftSentinelLab/assets/117882385/3707d0d8-bdc0-4e7d-8296-6c6e0b3633fb" height="80%" width="80%"/>
-</br>
-</br>
-
-11. Under **Get an activation code**, type in your first name, last name, and email.
-
-<img src="https://github.com/emann615/MicrosoftSentinelLab/assets/117882385/94d7f073-49bf-4ba5-a5ea-6a15a11e748f" height="80%" width="80%"/>
-</br>
-
-12. Click **Register**, and an activation code will be sent to your email.
-
-13. Find the activation code that was sent to your email.
-
-14. Enter the code in the box under **Activation Code**, and click **Continue**.
-
-<img src="https://github.com/emann615/MicrosoftSentinelLab/assets/117882385/0d0fbfba-6e2e-4ce6-9e76-f2f3e9c585ba" height="80%" width="80%"/>
-</br>
-</br>
-
-15. On the **License Information** page, click **Continue** again
-
-<img src="https://github.com/emann615/MicrosoftSentinelLab/assets/117882385/6de76f5a-3823-4da2-bc10-5a6e0d393536" height="80%" width="80%"/>
-</br>
-</br>
-
-16. Create a username and password for Nessus. Then click **Submit**.
-
-<img src="https://github.com/emann615/MicrosoftSentinelLab/assets/117882385/2d1518b2-5189-471e-b9d7-3fdd025227e6" height="80%" width="80%"/>
-</br>
-</br>
-
-17. Wait for the plugins to finish downloading then you will be taken to the **My Scans** page inside Nessus.
-
-<img src="https://github.com/emann615/MicrosoftSentinelLab/assets/117882385/3468e112-c58c-4313-84e7-cf0f3c8c096f" height="80%" width="80%"/>
-</br>
-</br>
-
-18. Before you can create your first scan, you will have to wait for the plugins to finish downloading.
-    * You can hover your mouse over the spinning circle icon in the top menu bar to track the progress.
-
-<img src="https://github.com/emann615/MicrosoftSentinelLab/assets/117882385/6ca75103-8447-4a28-9925-087b79b9df0f" height="80%" width="80%"/>
-</br>
-</br>
-
-19. Copy and save the local URL for Nessus so it is easy to access in the future.
+> NOTE: Copy and save the local URL for Nessus so it is easy to access in the future.
     * **Nessus URL:**  https://localhost:8834/# 
 
 ### Part 3: Find the IP Address of the Domain Controller
