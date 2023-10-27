@@ -23,6 +23,7 @@ Follow the link to read more on the strategy and various tools involved in execu
    * [Continue Set Up: Download Windows 10 ISO file](#Download-Windows-10-ISO-file)
    * [Part 1: Download and Install Nessus Essentials](#Part-1-Download-and-Install-Nessus-Essentials)
    * [Part 2: Initialize Nessus Installation](#Part-2-Initialize-Nessus-Installation)
+   * [Part 3: Setup virtual machine](#Part-3-Setup-virtual-machine)
    * [Part 4: Create a New Scan in Nessus](#Part-4-Create-a-New-Scan-in-Nessus)
    * [Part 5: Run Scan 1 (Non-credentialed) and View the Results](#Part-5-Run-Scan-1-Non-credentialed-and-View-the-Results)
    * [Part 6: Run Scan 2 (Credentialed) and View the Results](#Part-6-Run-Scan-2-Credentialed-and-View-the-Results)
@@ -89,6 +90,19 @@ I will provide the links to resources that will be required to follow along if y
 
 > NOTE: Copy and save the local URL for Nessus so it is easy to access in the future.
     * **Nessus URL:**  https://localhost:8834/# 
+
+## Part 3: Setup virtual machine
+- Open up VMware workstation 
+- Click Player > file > new virtual machine 
+- For the Installer disc image file (ISO) browse and select your windows 10 ISO. 
+- Hit next > next > maximum disk size is fine > customize hardware
+- Under customize hardware > select 4 GB of RAM 
+- Under Network adapter choose *Bridged*
+- Click close and finish 
+- Open your vm and follow the steps to install Windows 
+- **remember your user name and password** when you create an account 
+
+
 
 ### Part 3: Find the IP Address of the Domain Controller
 
