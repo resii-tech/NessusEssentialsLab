@@ -1,12 +1,18 @@
 # Nessus Essentials Lab: Vulnerability Management
 
 ## Description
-Nessus is a proprietary vulnerability scanner developed by Tenable, Inc that can remotely scan a computer or network for vulnerabilities. In this lab, I will install Nessus Essentials on a Windows 10 virtual machine and use it to run three scans against the Windows Server 2022 domain controller I set up in my previous [Active Directory Home Lab](https://github.com/emann615/ActiveDirectoryLab).
+Today’s lab is going to be on Vulnerability Management. We are going to be building a Vulnerability Management Lab where we install Nessus Essentials on our host machine and create a virtual environment with VMWare Workstation 17 by downloading a free copy of the Windows 10 operating system and running it inside a virtual machine (VM). We will even be installing some old, deprecated software in the Windows OS. We will conduct some vulnerability scans against that virtual machine in order to discover any vulnerabilities that might be on it. Then we are going to go ahead and remediate one or two of those so that we can observe what is happening in real time. 
 
 <div style="page-break-after: always; visibility: hidden"></div>
 
-The first scan will be a non-credentialed scan before any updates have been applied to the domain controller. The second scan will be a credentialed scan before any updates have been applied. The third and final scan will be a credentialed scan of the domain controller after updates have been applied. At the end of this lab, I will compare the results of the three scans.
+The first scan will be a non-credentialed scan before any updates have been applied to the target machine. The second scan will be a credentialed scan before any updates have been applied. The third and final scan will be a credentialed scan of the target vm after updates have been applied. At the end of this lab, I will compare the results of the three scans.
 <br />
+
+## Bonus Material - Blog Post
+
+Follow the link to read more on the strategy and various tools involved in executing passive and active reconaissance in unison to gather intel with Nessus at the forefront. There are also 5 helpful **Google Dorks**, 5 sample **Shodan** searh queries given along with a description of their purpose, and 5 different **Nmap Scripts** for different network mapping terrain:
+
+[The Quintessential Guide to Vulnerability Management with Nessus](https://medium.com/@hispanictitanic/the-quintessential-guide-to-vulnerability-management-with-nessus-3eeaf3e885f9)
 
 ## Table of Contents
 
