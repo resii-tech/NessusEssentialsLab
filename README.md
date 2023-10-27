@@ -20,7 +20,7 @@ Follow the link to read more on the strategy and various tools involved in execu
    * [Technologies and Protocols](#Technologies-and-Protocols)
    * [Resource Links](#Resource-Links)
    * [Overview](#Overview)
-   * [Part 1: Download Nessus on the PC 1 VM](#Part-1-Download-Nessus-on-the-PC-1-VM)
+   * [Continue Set Up: Download Windows 10 ISO file](#Part-1-Download-Windows-10-ISO-file)
    * [Part 2: Install Nessus on the PC 1 VM](#Part-2-Install-Nessus-on-the-PC-1-VM)
    * [Part 3: Find the IP Address of the Domain Controller](#Part-3-Find-the-IP-Address-of-the-Domain-Controller)
    * [Part 4: Create a New Scan in Nessus](#Part-4-Create-a-New-Scan-in-Nessus)
@@ -30,7 +30,7 @@ Follow the link to read more on the strategy and various tools involved in execu
    * [Part 8: Run Scan 3 (Credentialed) and View the Results](#Part-8-Run-Scan-3-Credentialed-and-View-the-Results)
    * [Results](#Results)
 
-### Learning objectives:
+### Learning Objectives:
 1. Provisioning and deprovisioning virtual environments within VMware for Windows 10.
 2. Run initial vulnerability scan without credentials against vm and observe results.
 3. Run a credentialed vulnerability scan with the addition of deprecated software added in.
@@ -52,9 +52,17 @@ I will provide the links to resources that will be required to follow along if y
 - [Deprecated Firefox Version for VM Install](https://ftp.mozilla.org/pub/firefox/releases/3.6.12/win32/en-US/)
 
 ### Overview:
+
 <img width="961" alt="nessus breakdown" src="https://github.com/resii-tech/NessusEssentialsLab/assets/129999089/c51374ec-e467-4d10-ad68-5e054bed7bf6">
 
 ## Walk-Through
+
+### Get Set Up: Download [VMware Workstaion 17 Player](https://www.vmware.com/products/workstation-player/workstation-player-evaluation.html)
+
+### Continue Set Up: Download [Windows 10 ISO File](https://www.microsoft.com/en-us/software-download/windows10)
+- Scroll down to the media creation tool and hit download now 
+- Accept software license terms and agree to Windows 10 setup
+- Creat installation media and choose the ISO file option
 
 ### Part 1: Download Nessus on the PC 1 VM
 
