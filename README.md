@@ -23,7 +23,7 @@ Follow the link to read more on the strategy and various tools involved in execu
    * [Continue Set Up: Download Windows 10 ISO file](#Download-Windows-10-ISO-file)
    * [Part 1: Download and Install Nessus Essentials](#Part-1-Download-and-Install-Nessus-Essentials)
    * [Part 2: Initialize Nessus Installation](#Part-2-Initialize-Nessus-Installation)
-   * [Part 3: Setup virtual machine](#Part-3-Setup-virtual-machine)
+   * [Part 3: Setup Virtual Machine](#Part-3-Setup-Virtual-Machine)
    * [Part 4: Create a New Scan in Nessus](#Part-4-Create-a-New-Scan-in-Nessus)
    * [Part 5: Run Scan 1 (Non-credentialed) and View the Results](#Part-5-Run-Scan-1-Non-credentialed-and-View-the-Results)
    * [Part 6: Run Scan 2 (Credentialed) and View the Results](#Part-6-Run-Scan-2-Credentialed-and-View-the-Results)
@@ -63,7 +63,7 @@ I will provide the links to resources that will be required to follow along if y
 ### Continue Set Up: Download [Windows 10 ISO File](https://www.microsoft.com/en-us/software-download/windows10)
 - Scroll down to the media creation tool and hit download now 
 - Accept software license terms and agree to Windows 10 setup
-- Creat installation media and choose the ISO file option
+- Create installation media and choose the ISO file option
 
 ![win10 download](https://github.com/resii-tech/NessusEssentialsLab/assets/129999089/b6fd88b5-ff83-425e-89bb-db1c4fa818f6)
 
@@ -75,7 +75,7 @@ I will provide the links to resources that will be required to follow along if y
 - Under version chose Nessus - 8.15.6
 - Under platform choose Windows - x86_64 **make sure it includes Server 2012 R2, 7,8,10**
 - Open Tenable Nessus and click next and install
-- After finishing installation and window should pop up with a local host URL 
+- After finishing installation a window should pop up with a local host URL 
 - Copy/paste the URL for future use 
 
 ## Part 2: Initialize Nessus Installation 
@@ -86,12 +86,12 @@ I will provide the links to resources that will be required to follow along if y
 - Create a username and password **remember for future use**
 - Click submit > and wait for download
 
-![image](https://github.com/resii-tech/NessusEssentialsLab/assets/129999089/5e5a4544-9b9b-4ee5-b89f-f6e50d2d8934)
+![nessus login page](https://github.com/resii-tech/NessusEssentialsLab/assets/129999089/5e5a4544-9b9b-4ee5-b89f-f6e50d2d8934)
 
 > NOTE: Copy and save the local URL for Nessus so it is easy to access in the future.
     * **Nessus URL:**  https://localhost:8834/# 
 
-## Part 3: Setup virtual machine
+## Part 3: Setup Virtual Machine
 - Open up VMware workstation 
 - Click Player > file > new virtual machine 
 - For the Installer disc image file (ISO) browse and select your windows 10 ISO. 
@@ -100,7 +100,7 @@ I will provide the links to resources that will be required to follow along if y
 - Under Network adapter choose *Bridged*
 - Click close and finish 
 - Open your vm and follow the steps to install Windows 
-- **remember your user name and password** when you create an account 
+- **Remember your user name and password** when you create an account 
 
 
 
