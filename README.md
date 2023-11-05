@@ -28,13 +28,10 @@ Follow the link to read more on the strategy and various tools involved in execu
    * [Part 5: Run Basic Network Scan (Non-Credentialed)](#Part-5-Run-Basic-Network-Scan-Non-Credentialed)
    * [Part 6: Re-Configure Target Virtual Machine](#Part-6-Re-Configure-Target-Virtual-Machine)
    * [Part 7: Run Second Scan (Credentialed)](#Part-7-Run-Second-Scan-Credentialed)
-   * 
-   * [Part 4: Create a New Scan in Nessus](#Part-4-Create-a-New-Scan-in-Nessus)
-   * [Part 5: Run Scan 1 (Non-credentialed) and View the Results](#Part-5-Run-Scan-1-Non-credentialed-and-View-the-Results)
-   * [Part 6: Run Scan 2 (Credentialed) and View the Results](#Part-6-Run-Scan-2-Credentialed-and-View-the-Results)
-   * [Part 7: Update Windows Server 2022 on the Domain Controller](#Part-7-Update-Windows-Server-2022-on-the-Domain-Controller)
-   * [Part 8: Run Scan 3 (Credentialed) and View the Results](#Part-8-Run-Scan-3-Credentialed-and-View-the-Results)
-   * [Results](#Results)
+   * [Part 8: Run Third Scan (Deprecated Software - Firefox)](#Part-8-Run-Third-Scan-Deprecated-Software-Firefox)
+   * [Part 9: Remediation through Updates and Patching](#Part-9-Remediation-through-Updates-and-Patching)
+   * [Part 10: Run Final Scan](#Part-10-Run-Final-Scan)
+   * [Results and Takeaways](#Results-and-Takeaways)
 
 ### Learning Objectives:
 
@@ -137,7 +134,7 @@ I will provide the links to resources that will be required to follow along if y
 
 > NOTE: Nessus is highly customizable. You can run Scheduled Scans, Change Port Settings and Create Reports as needed
 
-- Basic Scan Results (Non-Credentiealed) shows minimal (16) vulnerabilities
+- Basic Scan Results (Non-Credentialed) shows minimal (16) vulnerabilities
 - Click into each vulnerability for a Description and recommended Solutions
 
 ![Basic Scan Results](https://github.com/resii-tech/NessusEssentialsLab/assets/129999089/3eb1ccf3-e27b-4152-bdec-43362bb0f810)
@@ -159,72 +156,84 @@ I will provide the links to resources that will be required to follow along if y
 > NOTE: To find Username > Open ```cmd.exe``` > Type ```>whoami```
 - Save and Run Scan
 
+![Second Scan Credentialed](https://github.com/resii-tech/NessusEssentialsLab/assets/129999089/dd00a1d5-e9a7-4767-80e5-aada66f5bb65)
 
+- Second Scan Results (Credentialed) shows a significant increase ***(40)*** in vulnerabilities
+- Credentials gave us access to > File System > Registry > Running Services (safeguard your credentials)
+> NOTE: This highlights the importance of running a ***Credentialed Scan*** and the info it provides
 
-- Second Scan Results (Credentialed) shows a significant increase (#) in vulnerabilities
-- This highlights the importance of running a ***Credentialed Scan*** and the info it provides
+## Part 8: Run Third Scan (Deprecated Software - Firefox)
 
-## 
+- Install Deprecated Firefox V.3.6.12 on Target Virtual Machine
+- Back to Nessus > Run Scan
 
+![Firefox Scan](https://github.com/resii-tech/NessusEssentialsLab/assets/129999089/8fa53e4f-cda7-4545-9b90-4c445cb8772d)
 
+- Third Scan Results (Credentialed) with Deprecated Firefox install shows an even greater increase ***(45)*** in vulnerabilities
+- The increase comes in the form of **Critical Vulnerabilities** _up 25%_ and **High Vulnerabilities** _up 40%_
 
+![Remediations](https://github.com/resii-tech/NessusEssentialsLab/assets/129999089/95736dc2-a8ed-48d9-a91a-ea43c8845d75)
 
+> NOTE: The majority of recommended **Remediations** involve simple **Updates** to OS and Software
 
+## Part 9: Remediation through Updates and Patching
 
+- In Target Virtual Machine > Search and run ```appwiz.cpl``` > Uninstall Firefox
+- Search > Windows Update > Install all updates > Restart
+- Search again > Windows Updates > Install any new updates > restart
 
+![Uninstall Firefox](https://github.com/resii-tech/NessusEssentialsLab/assets/129999089/3b299a1c-8b5c-4c0f-8371-015eae98d140)
 
+## Part 10: Run Final Scan
 
+- Back to Nessus > Run Final Scan after implementing general remediations
 
+![Final Scan](https://github.com/resii-tech/NessusEssentialsLab/assets/129999089/de2b2cba-08af-4ae2-a955-ce5b3db5db9a)
 
-## Results
+## Results and Takeaways
 
-### Scan 1 (Non-credentialed) Results
-| Risk Raiting | Count | Percentage |
-| --- | --- | --- |
-| Critical | 0 | 0.00% |
-| High | 0 | 0.00% |
-| Medium | 1 | 1.45% |
-| Low | 1 | 1.45% |
-| Info | 67 | 97.10% |
-| **Total** | **69** | **100.00%** |
+### Scan 1 Target Re-configured (Credentialed) Results
+| Risk Raiting | Percentage |
+| --- | --- |
+| Critical | 2.00% |
+| High | 2.00% |
+| Medium | 2.00% |
+| Low | 0.00% |
+| Info | 95.00% |
+| **Total** | **100.00%** |
 
-The first scan was a non-credentialed scan before any updates were applied to the domain controller. This scan produced 1 medium, 1 low, and 67 info results. Non-credentialed scans are not as useful as credentialed scans when trying to get an accurate view of vulnerabilities that exist on a device or network because they lack proper access. Non-credentialed scans cannot see vulnerabilities that may exist on parts of a device or network that are off limits without proper authentication. As a result, non-credentialed scans produce far less results than credentialed scans.
+Non-credentialed scans are not as useful as credentialed scans when trying to get an accurate view of vulnerabilities that exist on a device or network because they lack proper access. Non-credentialed scans cannot see vulnerabilities that may exist on parts of a device or network that are off limits without proper authentication. As a result, non-credentialed scans produce far less results than credentialed scans. That makes credentials very important to a threat actor because of the access it gives them. Run credentialed scans when possible.
 
-### Scan 2 (Credentialed) Results
-| Risk Raiting | Count | Percentage |
-| --- | --- | --- |
-| Critical | 10 | 3.79% |
-| High | 7 | 2.65% |
-| Medium | 6 | 2.27% |
-| Low | 1 | 0.38% |
-| Info | 240 | 90.91% |
-| **Total** | **264** | **100.00%** |
+### Scan 2 - Firefox (Credentialed) Results
+| Risk Raiting | Percentage |
+| --- | --- |
+| Critical | 27.00% |
+| High | 26.00% |
+| Medium | 6.00% |
+| Low | 0.00% |
+| Info | 40.00% |
+| **Total** | **100.00%** |
 
-The second scan was a credentialed scan before any updates were applied to the domain controller. This scan produced 10 critical, 7 high, 6 medium, 1 low, and 240 info results. Since this scan was configured with the proper credentials, a lot more results were produced.
+The second ccredentialed scan was on a target running third-party software that was outdated. Even if the Targer VM was running an up-to-date OS, the thrid-party software would still  leave it open to attacks. The more third-party software you have installed the larger the attack surface you create. Zero trust and system hardening are ways to minimize your attack surface so that you minimize your vulnerability count.
 
-### Scan 3 (Credentialed) Results
-| Risk Raiting | Count | Percentage |
-| --- | --- | --- |
-| Critical | 0 | 0.00% |
-| High | 0 | 0.00% |
-| Medium | 1 | 1.09% |
-| Low | 1 | 1.09% |
-| Info | 90 | 97.83% |
-| **Total** | **92** | **100.00%** |
+### Scan 3 - Remediated (Credentialed) Results
+| Risk Raiting | Percentage |
+| --- | --- |
+| Critical | 2.00% |
+| High | 2.00% |
+| Medium | 2.00% |
+| Low | 0.00% |
+| Info | 94.00% |
+| **Total** | **100.00%** |
 
-The third scan was a credentialed scan after updates had been applied to the domain controller. The results of this scan showed far less vulnerabilities than the previous credentialed scan I ran before updates were applied. This scan produced 1 medium, 1 low, and 90 info results. All of the critical and high level vulnerabilities were fixed. These results demostrate the importance of schedueling regular vulnerability scan agaisnt networks and devices. They also show that keeping systems up to date with the latest patches can drastically reduce the number of vulnerabilities an attacker could exploit.
+The third credentialed scan after remediations were implemented show far less vulnerabilities than the previous credentialed scans run before updates were applied. These results demonstrate the importance of scheduling regular vulnerability scans against networks and devices. They also show that keeping systems up to date with the latest patches can drastically reduce the number of vulnerabilities an attacker could exploit.
 
-#### False Positive Result
-The remaining medium rank vulnerability appears to be a false positive. 
+###  Takeaways
 
-<img src="https://github.com/emann615/MicrosoftSentinelLab/assets/117882385/1e3f52e4-7ea2-4b4d-af2c-c57890a590f2" height="80%" width="80%"/>
-</br>
-</br>
+- [ ] The Vulnerability Management Cycle consists mainly of scanning and remediating
+- [ ] Secure your Credentials from Threat Actors (Internal included)
+- [ ] Third-Party Software enlarges your attack surface - minimize its use where possible
+- [ ] More goes into it when large organizations necessitate Policies and Procedures around the cycle
+- [ ] Automate as much as possible (Windows Updates | Third-Party Updates)
+- [ ] Familiarize yourself with CVSS - Common Vulnerability Scanning System
 
-<img src="https://github.com/emann615/MicrosoftSentinelLab/assets/117882385/16055178-dfae-4d25-ba72-5f27c5b9a263" height="80%" width="80%"/>
-</br>
-</br>
-
-<img src="https://github.com/emann615/MicrosoftSentinelLab/assets/117882385/e2f6d5fc-4ef6-4bc3-afa7-a5da638c12df" height="80%" width="80%"/>
-</br>
-</br>
