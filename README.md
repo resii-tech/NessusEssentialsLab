@@ -23,7 +23,12 @@ Follow the link to read more on the strategy and various tools involved in execu
    * [Continue Set Up: Download Windows 10 ISO file](#Download-Windows-10-ISO-file)
    * [Part 1: Download and Install Nessus Essentials](#Part-1-Download-and-Install-Nessus-Essentials)
    * [Part 2: Initialize Nessus Installation](#Part-2-Initialize-Nessus-Installation)
-   * [Part 3: Setup Virtual Machine](#Part-3-Setup-Virtual-Machine)
+   * [Part 3: Setup Target Virtual Machine](#Part-3-Setup-Target-Virtual-Machine)
+   * [Part 4: Configure Target Virtual Machine Firewall](#Part-4-Configure-Target-Virtual-Machine-Firewall)
+   * [Part 5: Run Basic Network Scan (Non-Credentialed)](#Part-5-Run-Basic-Network-Scan-Non-Credentialed)
+   * [Part 6: Re-Configure Target Virtual Machine](#Part-6-Re-Configure-Target-Virtual-Machine)
+   * [Part 7: Run Second Scan (Credentialed)](#Part-7-Run-Second-Scan-Credentialed)
+   * 
    * [Part 4: Create a New Scan in Nessus](#Part-4-Create-a-New-Scan-in-Nessus)
    * [Part 5: Run Scan 1 (Non-credentialed) and View the Results](#Part-5-Run-Scan-1-Non-credentialed-and-View-the-Results)
    * [Part 6: Run Scan 2 (Credentialed) and View the Results](#Part-6-Run-Scan-2-Credentialed-and-View-the-Results)
@@ -32,12 +37,14 @@ Follow the link to read more on the strategy and various tools involved in execu
    * [Results](#Results)
 
 ### Learning Objectives:
+
 1. Provisioning and deprovisioning virtual environments within VMware for Windows 10.
 2. Run initial vulnerability scan without credentials against vm and observe results.
 3. Run a credentialed vulnerability scan with the addition of deprecated software added in.
 4. Perform andalysis and remediation of issues and run  final scan to verify remediation was successful.
 
 ### Technologies and Protocols:
+
 * VMware Workstation 17 Player
 * Nessus Essentials 
 * Windows ISO + Firefox 3.6.12
@@ -47,6 +54,7 @@ Follow the link to read more on the strategy and various tools involved in execu
 ### Resource Links
 
 I will provide the links to resources that will be required to follow along if you wish to do so: 
+
 - [VMware Workstation Player](https://www.vmware.com/products/workstation-player/workstation-player-evaluation.html)
 - [Windows 10 ISO](https://www.microsoft.com/en-us/software-download/windows10)
 - [Nessus Essentials](https://www.tenable.com/products/nessus/nessus-essentials)
@@ -54,13 +62,14 @@ I will provide the links to resources that will be required to follow along if y
 
 ### Overview:
 
-<img width="961" alt="nessus breakdown" src="https://github.com/resii-tech/NessusEssentialsLab/assets/129999089/c51374ec-e467-4d10-ad68-5e054bed7bf6">
+<img alt="Nessus Breakdown" src="https://github.com/resii-tech/NessusEssentialsLab/assets/129999089/c51374ec-e467-4d10-ad68-5e054bed7bf6)" width="98%" height="70%">
 
 ## Walk-Through
 
 ### Get Set Up: Download [VMware Workstaion 17 Player](https://www.vmware.com/products/workstation-player/workstation-player-evaluation.html)
 
 ### Continue Set Up: Download [Windows 10 ISO File](https://www.microsoft.com/en-us/software-download/windows10)
+
 - Scroll down to the media creation tool and hit download now 
 - Accept software license terms and agree to Windows 10 setup
 - Create installation media and choose the ISO file option
@@ -68,302 +77,104 @@ I will provide the links to resources that will be required to follow along if y
 ![win10 download](https://github.com/resii-tech/NessusEssentialsLab/assets/129999089/b6fd88b5-ff83-425e-89bb-db1c4fa818f6)
 
 ## Part 1: Download and Install [Nessus Essentials](https://www.tenable.com/products/nessus/nessus-essentials)
+
 - Register for an account
 - You will receive an activation code in your email
-- Copy your activation code in your email and click the Download Nessus as well
-- Choose Nessus > View Downloads 
-- Under version chose Nessus - 8.15.6
-- Under platform choose Windows - x86_64 **make sure it includes Server 2012 R2, 7,8,10**
-- Open Tenable Nessus and click next and install
-- After finishing installation a window should pop up with a local host URL 
-- Copy/paste the URL for future use 
+- Download Nessus > Version: 10.6.2 Platform: Windows - x86_64 
+- Open Nessus and install > A window should pop up with a local host URL 
+- Copy/paste the URL for future use
+
+![Download Nessus Specs](https://github.com/resii-tech/NessusEssentialsLab/assets/129999089/480b539a-62b2-440d-b8c6-22ca947ffb46)
 
 ## Part 2: Initialize Nessus Installation 
+
 - Click Connect via SSL on web page 
 - Click **Advance** on warning page > **Continue to localhost** > Nessus Essentials 
 - Click skip on Get an activation code (we already have ours)
-- Paste activation code > continue 
+- Paste activation code from email > continue 
 - Create a username and password **remember for future use**
 - Click submit > and wait for download
 
-![nessus login page](https://github.com/resii-tech/NessusEssentialsLab/assets/129999089/5e5a4544-9b9b-4ee5-b89f-f6e50d2d8934)
+![Nessus Login Page](https://github.com/resii-tech/NessusEssentialsLab/assets/129999089/5e5a4544-9b9b-4ee5-b89f-f6e50d2d8934)
 
 > NOTE: Copy and save the local URL for Nessus so it is easy to access in the future.
     * **Nessus URL:**  https://localhost:8834/# 
 
-## Part 3: Setup Virtual Machine
+## Part 3: Setup Target Virtual Machine
+
 - Open up VMware workstation 
 - Click Player > file > new virtual machine 
-- For the Installer disc image file (ISO) browse and select your windows 10 ISO. 
-- Hit next > next > maximum disk size is fine > customize hardware
-- Under customize hardware > select 4 GB of RAM 
-- Under Network adapter choose *Bridged*
-- Click close and finish 
-- Open your vm and follow the steps to install Windows 
+- For the Installer disc image file (ISO) browse and select your windows 10 ISO
+- Customize > Memory: *4GB (4096 MB)* > Network Adapter: *Bridged*
+- Click Finish > Open VM and follow the steps to install Windows 
 - **Remember your user name and password** when you create an account 
 
+![Host VM Configuration](https://github.com/resii-tech/NessusEssentialsLab/assets/129999089/e9681f3e-4144-41e9-bc92-6cd53b31f2c7)
 
 
-### Part 3: Find the IP Address of the Domain Controller
+## Part 4: Configure Target Virtual Machine Firewall
 
-1. Go to the **DC** virtual machine, and log in.
+- On Target VM grab IP address > Open cmd.exe > Run  ``` >ipconfig ```
+- On Host Machine ping Target VM > Open cmd.exe > Run  ``` >ping 192.168.1.132 -t ```
+- Firewall settings on Target VM prevent scanning > Request Timed-Out
 
-<img src="https://github.com/emann615/MicrosoftSentinelLab/assets/117882385/d22af83c-6d69-4bfd-b3f4-0e3fffecbb47" height="80%" width="80%"/>
-</br>
+![Ping Before Firewall](https://github.com/resii-tech/NessusEssentialsLab/assets/129999089/e9465761-bd20-4688-b71c-7523d0ddf325)
 
-2. Click **Start**, and type cmd.
+> NOTE: We must change firewall settings on Target VM in order to scan it and run Nessus against it
 
-3. Hit **Enter** to open **Command Prompt**.
+- On Target VM in Search Bar > Type ```wf.msc``` > Turn off Domain, Private and Public Profiles
+- Immediately the ping returns a result and we know we can proceed
 
-<img src="https://github.com/emann615/MicrosoftSentinelLab/assets/117882385/bbb2a3c4-83c1-4d00-8ae6-6c497f3ed07e" height="80%" width="80%"/>
-</br>
-</br>
+![Ping After Firewall](https://github.com/resii-tech/NessusEssentialsLab/assets/129999089/567f0557-1e58-4c19-834f-e48fc5e4b3df)
 
-4. Type **ipconfig** into Command Prompt, and hit **Enter**.
+## Part 5: Run Basic Network Scan (Non-Credentialed)
 
-<img src="https://github.com/emann615/MicrosoftSentinelLab/assets/117882385/d8d69dcb-ac33-4705-949d-cd13e30d20ad" height="80%" width="80%"/>
-</br>
-</br>
+- My Scans > New Scan > Basic Network Scan
+- Name: Windows 10 Single Host | Target: 192.168.1.132
+- Hit Play to run scan
 
-5. Find the address next to **IPv4 Address**.
+![Basic Scan Config](https://github.com/resii-tech/NessusEssentialsLab/assets/129999089/9f4ad7f2-3190-4db6-aebb-0248350a0c56)
 
-<img src="https://github.com/emann615/MicrosoftSentinelLab/assets/117882385/be8e4267-95e5-4385-b0c0-ad8fc45042b1" height="80%" width="80%"/>
-</br>
-</br>
+> NOTE: Nessus is highly customizable. You can run Scheduled Scans, Change Port Settings and Create Reports as needed
 
-### Part 4: Create a New Scan in Nessus
+- Basic Scan Results (Non-Credentiealed) shows minimal (16) vulnerabilities
+- Click into each vulnerability for a Description and recommended Solutions
 
-1. Go back to the **PC 1** virtual machine.
+![Basic Scan Results](https://github.com/resii-tech/NessusEssentialsLab/assets/129999089/3eb1ccf3-e27b-4152-bdec-43362bb0f810)
 
-<img src="https://github.com/emann615/MicrosoftSentinelLab/assets/117882385/baa96c4c-0bd1-473c-af1b-58576a131584" height="80%" width="80%"/>
-</br>
-</br>
+## Part 6: Re-Configure Target Virtual Machine
 
-2. Click **Create a new scan** in Nessus.
+- Enable Remote Registry > ```services.msc``` > Properties > Automatic > Start
+- Enable File and Printer Sharing > ```advanced sharing``` > Turn on for Private, Guest, and All Networks
+- Disable User Account Control > ```user account control``` > Lowest setting
+- Registry Edit Hack (Add Local Account Token) > ```regedit.msc``` > see this [Nessus Article](https://community.tenable.com/s/article/Scanning-with-non-default-Windows-Administrator-Account?language=en_US) for Specs
+- Restart Target Virtual Machine
 
-<img src="https://github.com/emann615/MicrosoftSentinelLab/assets/117882385/8208c32f-d8e2-44a5-9aeb-ad7b0198ce2e" height="80%" width="80%"/>
-</br>
-</br>
+![Regedit Hack](https://github.com/resii-tech/NessusEssentialsLab/assets/129999089/9080fa7c-14cd-4a49-9458-bfaf5a41a8fd)
 
-3. Click **Basic Network Scan**.
+## Part 7: Run Second Scan (Credentialed)
 
-<img src="https://github.com/emann615/MicrosoftSentinelLab/assets/117882385/202622bc-2fb4-43f8-9134-01bb3083c153" height="80%" width="80%"/>
-</br>
+- In Nessus > Check box > More > Configure > Credentials Tab
+- Windows > Enter Username: ```randall``` | Password: ```########```
+> NOTE: To find Username > Open ```cmd.exe``` > Type ```>whoami```
+- Save and Run Scan
 
-4. In the box next to **Name**, type in a name for your scan.
 
-5. In the box next to **Targets**, type in the IP address of your domain controller.
 
-<img src="https://github.com/emann615/MicrosoftSentinelLab/assets/117882385/22deeb57-a232-4a89-aef0-9df44cf58450" height="80%" width="80%"/>
-</br>
-</br>
+- Second Scan Results (Credentialed) shows a significant increase (#) in vulnerabilities
+- This highlights the importance of running a ***Credentialed Scan*** and the info it provides
 
-6. Click **Save** to save your scan.
+## 
 
-<img src="https://github.com/emann615/MicrosoftSentinelLab/assets/117882385/f4f61d26-f7fa-436e-aeb4-6ff59e55c976" height="80%" width="80%"/>
-</br>
-</br>
 
-### Part 5: Run Scan 1 (Non-credentialed) and View the Results
 
-1. From the **My Scans** page, click the Launch icon to begin running your scan.
 
-<img src="https://github.com/emann615/MicrosoftSentinelLab/assets/117882385/efaa5130-8ccf-4135-b27d-3caed00e4491" height="80%" width="80%"/>
-</br>
-</br>
 
-2. Wait for the scan to finish. You will see a check mark next to the scan once it is complete.
 
-<img src="https://github.com/emann615/MicrosoftSentinelLab/assets/117882385/ae7a5f53-7cb9-4f6e-8c5f-06950c05027f" height="80%" width="80%"/>
-</br>
-</br>
 
-3. Double click the scan to view the results.
 
-<img src="https://github.com/emann615/MicrosoftSentinelLab/assets/117882385/b7c54af8-20d6-4c42-9cbe-12126cb7579f" height="80%" width="80%"/>
-</br>
-</br>
 
-4. In the **Host** tab you will see a bar that displays the vulnerability count and graphical depiction of the vulnerabilities that were found based on percentage.
-   * Vulnerabilities are categorized based on their risk level (Critical, High, Medium, Low, Info).
 
-<img src="https://github.com/emann615/MicrosoftSentinelLab/assets/117882385/5add47d0-3a51-4ac2-8575-a52204700cb0" height="80%" width="80%"/>
-</br>
-</br>
-
-<img src="https://github.com/emann615/MicrosoftSentinelLab/assets/117882385/8a198ff1-37f7-469e-84fc-0b8f66959091" height="80%" width="80%"/>
-</br>
-</br>
-
-5. Click the bar that displays the vulnerability count to open up a detailed list of specific vulnerabilities that were found.
-
-<img src="https://github.com/emann615/MicrosoftSentinelLab/assets/117882385/08819803-e45d-42df-86b9-b798f549405f" height="80%" width="80%"/>
-</br>
-</br>
-
-6. Click each vulnerability to see more details, including a description and proposed solution for the vulnerability.
-
-<img src="https://github.com/emann615/MicrosoftSentinelLab/assets/117882385/4c2ff102-109c-44f3-af85-f4a961789290" height="80%" width="80%"/>
-</br>
-</br>
-
-<img src="https://github.com/emann615/MicrosoftSentinelLab/assets/117882385/e0f0ff21-6a6e-4f50-9859-02536596d384" height="80%" width="80%"/>
-</br>
-</br>
-
-### Part 6: Run Scan 2 (Credentialed) and View the Results
-
-1. Go back to the **My Scans** page.
-
-<img src="https://github.com/emann615/MicrosoftSentinelLab/assets/117882385/aed078c9-af41-49b6-9c04-f2bffb1a5fe3" height="80%" width="80%"/>
-</br>
-</br>
-
-2. Click the check box next to the scan.
-
-<img src="https://github.com/emann615/MicrosoftSentinelLab/assets/117882385/eaa126ea-a1b0-46f8-9a67-68313f572018" height="80%" width="80%"/>
-</br>
-</br>
-
-3. Click the dropdown arrow next to **More**, and click **Configure**.
-
-<img src="https://github.com/emann615/MicrosoftSentinelLab/assets/117882385/a3b34a4d-e657-4d9d-9d50-38b53e71e95e" height="80%" width="80%"/>
-</br>
-</br>
-
-4. Select the **Credentials** tab, and click **Windows**.
-
-<img src="https://github.com/emann615/MicrosoftSentinelLab/assets/117882385/8d467d39-332a-456e-8b97-e788ef34271f" height="80%" width="80%"/>
-</br>
-</br>
-
-5. Type in the username and password for the admin account you created in Active Directory, and click **Save**.
-
-<img src="https://github.com/emann615/MicrosoftSentinelLab/assets/117882385/cbf02f94-1770-4b6f-bbf6-0f6fc011077e" height="80%" width="80%"/>
-</br>
-</br>
-
-<img src="https://github.com/emann615/MicrosoftSentinelLab/assets/117882385/d424db6a-26dc-44ea-b7ee-5ad87a8fcaf1" height="80%" width="80%"/>
-</br>
-</br>
-
-6. Go back to the **My Scans** page, and click the **Launch** icon next to the scan to run it.
-
-<img src="https://github.com/emann615/MicrosoftSentinelLab/assets/117882385/f61c610e-dad6-415b-b55b-51fd21332a2c" height="80%" width="80%"/>
-</br>
-</br>
-
-7. Double click the scan to view the results.
-
-<img src="https://github.com/emann615/MicrosoftSentinelLab/assets/117882385/a991a81a-39bc-42e2-8b99-95179ed04868" height="80%" width="80%"/>
-</br>
-</br>
-
-<img src="https://github.com/emann615/MicrosoftSentinelLab/assets/117882385/9f12d9c3-2c55-45ec-8cfd-5504a6b926f2" height="80%" width="80%"/>
-</br>
-</br>
-
-8. Select the **History** tab to view a list of scans you have completed.
-
-<img src="https://github.com/emann615/MicrosoftSentinelLab/assets/117882385/4b1fb242-d4de-4d9d-aac8-c40afe44f1b1" height="80%" width="80%"/>
-</br>
-
-9. Click each scan to review the results.
-
-10. Compare the results of the non-credentialed scan to the results of the credentialed scan you just ran.
-
-<img src="https://github.com/emann615/MicrosoftSentinelLab/assets/117882385/ee3e0be2-10a8-43f8-bdd2-7de23cc223c7" height="80%" width="80%"/>
-</br>
-</br>
-
-<img src="https://github.com/emann615/MicrosoftSentinelLab/assets/117882385/7bdea49d-d7a8-4901-a607-76523ffa9bdb" height="80%" width="80%"/>
-</br>
-</br>
-
-11. Select the **Vulnerabilities** tab to see a detailed list of vulnerabilities that were found after the credentialed scan.
-    * The credentialed scan should find a lot more vulnerabilities than the non-credentialed scan.
-
-<img src="https://github.com/emann615/MicrosoftSentinelLab/assets/117882385/4eba4023-6d47-4a49-8e70-1b91b3775ebb" height="80%" width="80%"/>
-</br>
-</br>
-
-<img src="https://github.com/emann615/MicrosoftSentinelLab/assets/117882385/64b1119c-3bf0-4a14-b96c-960302cabe6c" height="80%" width="80%"/>
-</br>
-</br>
-
-<img src="https://github.com/emann615/MicrosoftSentinelLab/assets/117882385/7ef5a035-6efa-4c87-b082-e90a8dab419d" height="80%" width="80%"/>
-</br>
-</br>
-
-### Part 7: Update Windows Server 2022 on the Domain Controller
-
-1. Go back to the **DC** virtual machine, and log in.
-
-<img src="https://github.com/emann615/MicrosoftSentinelLab/assets/117882385/c9c75a24-5c98-48c3-bdb6-6f413f80954c" height="80%" width="80%"/>
-</br>
-</br>
-
-2. Click **Start**, and select **Settings**.
-
-<img src="https://github.com/emann615/MicrosoftSentinelLab/assets/117882385/997bf378-da9d-47fe-bf14-68364dc89c2c" height="80%" width="80%"/>
-</br>
-</br>
-
-3. Click **Updates and Security**.
-
-<img src="https://github.com/emann615/MicrosoftSentinelLab/assets/117882385/4202ccb9-2336-4992-b6f4-f23804ef32f5" height="80%" width="80%"/>
-</br>
-</br>
-
-4. Click **Windows Update**.
-
-<img src="https://github.com/emann615/MicrosoftSentinelLab/assets/117882385/08b186a9-6e0d-461e-88e3-a1d06d8be9c0" height="80%" width="80%"/>
-</br>
-</br>
-
-5. Click **Install now** to install the updates.
-
-<img src="https://github.com/emann615/MicrosoftSentinelLab/assets/117882385/9c8c1c7d-03e3-47df-9a71-3aa1c02419db" height="80%" width="80%"/>
-</br>
-</br>
-
-6. Keep installing updates until your system is completely up to date.
-   * You may be required to restart the machine several times to apply the updates.
-
-<img src="https://github.com/emann615/MicrosoftSentinelLab/assets/117882385/c98f04b5-4c45-41fa-94ed-e9aae9305ca2" height="80%" width="80%"/>
-</br>
-</br>
-
-### Part 8: Run Scan 3 (Credentialed) and View the Results
-
-1. Go back to the **PC 1** virtual machine and log in.
-
-<img src="https://github.com/emann615/MicrosoftSentinelLab/assets/117882385/290cd7bc-572f-478f-bd4f-41e38b72ab75" height="80%" width="80%"/>
-</br>
-</br>
-
-2. From the **My Scans** page inside Nessus, click the **Launch** icon to begin running your second credentialed scan.
-
-<img src="https://github.com/emann615/MicrosoftSentinelLab/assets/117882385/a07b3551-2218-41ac-a807-2f9b9eff69b9" height="80%" width="80%"/>
-</br>
-</br>
-
-3. Once the scan is complete, double click it to review the results.
-
-<img src="https://github.com/emann615/MicrosoftSentinelLab/assets/117882385/b89a5511-4b7b-4a1f-966b-370a9bfda8e4" height="80%" width="80%"/>
-</br>
-</br>
-
-<img src="https://github.com/emann615/MicrosoftSentinelLab/assets/117882385/98d88351-8b3c-4283-9887-8bb51fd6b2f5" height="80%" width="80%"/>
-</br>
-</br>
-
-4. Select the **History** tab to compare the results of the three scans.
-   * Most of the vulnerabilities found after the first credentialed scan should now be fixed.
-
-<img src="https://github.com/emann615/MicrosoftSentinelLab/assets/117882385/b4463f02-4dee-486d-a936-670156fbc168" height="80%" width="80%"/>
-</br>
-</br>
 
 ## Results
 
